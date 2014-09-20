@@ -37,7 +37,6 @@ var getFilingXmlFileUrl = function(filingHref, callback) {
 var getFilingHtmlFileUrl = function(filingHref, callback) {
   request(filingHref, function(error, response, body) {
     var htmlName = cheerio(body).find('a[href^="/Archives"]').first().attr('href');
-    console.log(htmlName);
     var htmlUrl = url.resolve("http://www.sec.gov/", htmlName);
     callback(null, htmlUrl);
   });
