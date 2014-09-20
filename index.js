@@ -1,9 +1,8 @@
 var cheerio   = require('cheerio');
+var ceos      = require('./ceos.json');
 var request   = require('request');
 var url       = require('url');
 var XmlStream = require('xml-stream');
-
-var id = '0001513362';
 
 var getLatestFiling = function(id, callback) {
   var requestOptions = {
@@ -78,10 +77,20 @@ var parseFilingXml = function(xmlFileUrl, callback) {
   });
 };
 
-getLatestFiling(id, function(error, filingHref) {
-  getFilingXmlFileUrl(filingHref, function(error, xmlFileUrl) {
-    parseFilingXml(xmlFileUrl, function(error, shares, cost) {
-      console.log(shares, cost);
+
+getLatestTransaction = function(id, callback) {
+  getLatestFiling(id, function(error, filingHref) {
+    getFilingXmlFileUrl(filingHref, function(error, xmlFileUrl) {
+      parseFilingXml(xmlFileUrl, function (error, shares, cost) {
+        callback(null, filingHref, shares, cost);
+      });
     });
-  })
-});
+  });
+};
+
+for (var id in ceos) {
+  var ceo = ceos[id];
+  getLatestTransaction(id, function(error, filingUrl, shares, cost) {
+    console.log(ceo.name + " sold " + shares + " shares for $" + cost + " " + filingUrl);
+  });
+}
