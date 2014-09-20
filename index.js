@@ -1,3 +1,4 @@
+var async     = require('async');
 var cheerio   = require('cheerio');
 var ceos      = require('./ceos.json');
 var Humanize  = require('humanize-plus');
@@ -123,34 +124,56 @@ var parseFilingXml = function(xmlFileUrl, callback) {
 };
 
 var getLatestTransaction = function(id, callback) {
-  getLatestFiling(id, function(error, filingHref, filingDate) {
-    if (error) return callback(error);
+  var tasks = [];
+  var results = {};
 
-    getFilingXmlFileUrl(filingHref, function(error, xmlFileUrl) {
-      if (error) return callback(error);
-
-      getFilingHtmlFileUrl(filingHref, function(error, htmlFileUrl) {
-        if (error) return callback(error);
-
-        parseFilingXml(xmlFileUrl, function (error, shares, dollarAmount) {
-          if (error) return callback(error);
-
-          callback(null, htmlFileUrl, shares, dollarAmount, filingDate);
-        });
-      });
+  tasks.push(function(callback) {
+    getLatestFiling(id, function(error, filingHref, filingDate) {
+      results.rootUrl = filingHref;
+      results.date = filingDate;
+      callback(error);
     });
+  })
+
+  tasks.push(function(callback) {
+    getFilingXmlFileUrl(results.rootUrl, function(error, xmlFileUrl) {
+      results.xmlUrl = xmlFileUrl;
+      callback(error);
+    });
+  });
+
+  tasks.push(function(callback) {
+    getFilingHtmlFileUrl(results.rootUrl, function(error, htmlFileUrl) {
+      results.htmlUrl = htmlFileUrl;
+      callback(error);
+    });
+  });
+
+  tasks.push(function(callback) {
+    parseFilingXml(results.xmlUrl, function (error, shares, dollars) {
+      results.shares = shares;
+      results.dollars = dollars;
+      callback(error);
+    });
+  });
+
+  async.waterfall(tasks, function(error) {
+    callback(error, results);
   });
 };
 
-var generateTweet = function(ceo, filingUrl, shares, dollarAmount, filingDate) {
-  return ceo.name + " sold " + Humanize.compactInteger(shares, 0) + " shares for $" + Humanize.compactInteger(dollarAmount, 1) + " on " + new Date(filingDate).toString() + " " + filingUrl;
+var generateTweet = function(ceo, results) {
+  return ceo.name + " sold " + Humanize.compactInteger(results.shares, 0)
+    + " shares for $" + Humanize.compactInteger(results.dollars, 1)
+    + " on " + new Date(results.date).toString()
+    + " " + results.htmlUrl;
 }
 
 Object.keys(ceos).forEach(function(id) {
-  getLatestTransaction(id, function(error, filingUrl, shares, dollarAmount, filingDate) {
-    if (shares > 0 && dollarAmount > 0)
-      console.log(generateTweet(ceos[id], filingUrl, shares, dollarAmount, filingDate));
-    else if (error)
+  getLatestTransaction(id, function(error, results) {
+    if (error)
       console.error(error.message || error);
+    else if (results && results.shares > 0 && results.dollars > 0)
+      console.log(generateTweet(ceos[id], results));
   });
 });
