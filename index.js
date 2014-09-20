@@ -87,21 +87,24 @@ var parseFilingXml = function(xmlFileUrl, callback) {
 };
 
 
-getLatestTransaction = function(id, callback) {
+var getLatestTransaction = function(id, callback) {
   getLatestFiling(id, function(error, filingHref) {
     getFilingXmlFileUrl(filingHref, function(error, xmlFileUrl) {
       getFilingHtmlFileUrl(filingHref, function(error, htmlFileUrl) {
-        parseFilingXml(xmlFileUrl, function (error, shares, cost) {
-          callback(null, htmlFileUrl, shares, cost);
+        parseFilingXml(xmlFileUrl, function (error, shares, dollarAmount) {
+          callback(null, htmlFileUrl, shares, dollarAmount);
         });
       });
     });
   });
 };
 
-for (var id in ceos) {
-  var ceo = ceos[id];
-  getLatestTransaction(id, function(error, filingUrl, shares, cost) {
-    console.log(ceo.name + " sold " + Humanize.compactInteger(shares, 0) + " shares for $" + Humanize.compactInteger(cost, 1) + " " + filingUrl);
-  });
+var generateTweet = function(ceo, filingUrl, shares, dollarAmount) {
+  return ceo.name + " sold " + Humanize.compactInteger(shares, 0) + " shares for $" + Humanize.compactInteger(dollarAmount, 1) + " " + filingUrl;
 }
+
+Object.keys(ceos).forEach(function(id) {
+  getLatestTransaction(id, function(error, filingUrl, shares, dollarAmount) {
+    console.log(generateTweet(ceos[id], filingUrl, shares, dollarAmount));
+  });
+});
