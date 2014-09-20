@@ -105,6 +105,7 @@ var generateTweet = function(ceo, filingUrl, shares, dollarAmount) {
 
 Object.keys(ceos).forEach(function(id) {
   getLatestTransaction(id, function(error, filingUrl, shares, dollarAmount) {
-    console.log(generateTweet(ceos[id], filingUrl, shares, dollarAmount));
+    if (shares > 0 && dollarAmount > 0)
+      console.log(generateTweet(ceos[id], filingUrl, shares, dollarAmount));
   });
 });
