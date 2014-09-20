@@ -1,5 +1,6 @@
 var cheerio   = require('cheerio');
 var ceos      = require('./ceos.json');
+var Humanize  = require('humanize-plus');
 var request   = require('request');
 var url       = require('url');
 var XmlStream = require('xml-stream');
@@ -102,6 +103,6 @@ getLatestTransaction = function(id, callback) {
 for (var id in ceos) {
   var ceo = ceos[id];
   getLatestTransaction(id, function(error, filingUrl, shares, cost) {
-    console.log(ceo.name + " sold " + shares + " shares for $" + cost + " " + filingUrl);
+    console.log(ceo.name + " sold " + Humanize.compactInteger(shares, 0) + " shares for $" + Humanize.compactInteger(cost, 1) + " " + filingUrl);
   });
 }
