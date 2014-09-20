@@ -86,7 +86,6 @@ var parseFilingXml = function(xmlFileUrl, callback) {
   });
 };
 
-
 var getLatestTransaction = function(id, callback) {
   getLatestFiling(id, function(error, filingHref) {
     getFilingXmlFileUrl(filingHref, function(error, xmlFileUrl) {
