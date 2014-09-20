@@ -1,10 +1,4 @@
 {
-  "1214156": {
-    "name": "Tim Cook",
-    "company": "Apple",
-    "twitter": "tim_cook",
-    "id": "1214156"
-  },
   "1335782": {
     "name": "Doug McMillon",
     "company": "Walmart",
@@ -19,5 +13,17 @@
     "name": "John Watson",
     "company": "Chevron",
     "id": "1194941"
+  },
+  "315090": {
+    "name": "Warren Buffett",
+    "company": "Berkshire Hathaway",
+    "twitter": "WarrenBuffett",
+    "id": "315090"
+  },
+  "1214156": {
+    "name": "Tim Cook",
+    "company": "Apple",
+    "twitter": "tim_cook",
+    "id": "1214156"
   }
 }
