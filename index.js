@@ -30,7 +30,9 @@ var getLatestFiling = function(id, callback) {
     }
   };
   var filingRequest = request(requestOptions);
-  filingRequest.on('error', callback);
+  filingRequest.on('error', function(error) {
+    callback(new Error("Failed to get latest filing for: " + id + ". " + error.message));
+  });
 
   var filingUrl;
 
@@ -45,7 +47,7 @@ var getLatestFiling = function(id, callback) {
   });
 
   parser.on('end', function() {
-    callback(new Error("No filing URL and date parsed: " + id))
+    callback(new Error("No filing URL and date found in feed: " + id))
   });
 };
 
@@ -54,7 +56,7 @@ var getFilingXmlFileUrl = function(filingHref, callback) {
 
   var folderUrl = url.resolve(filingHref, '.');
   request(folderUrl, function(error, response, body) {
-    if (error) return callback(error);
+    if (error) return callback(new Error("Request failed: " + folderUrl + " " + error.message));
 
     var fileName = cheerio(body).find('a[href$=".xml"]').first().text();
     if (!fileName) return callback(new Error("No link to XML file found: " + folderUrl));
@@ -169,11 +171,14 @@ var generateTweet = function(ceo, results) {
     + " " + results.htmlUrl;
 }
 
-Object.keys(ceos).forEach(function(id) {
+var queue = async.queue(function(id, callback) {
   getLatestTransaction(id, function(error, results) {
     if (error)
       console.error(error.message || error);
     else if (results && results.shares > 0 && results.dollars > 0)
       console.log(generateTweet(ceos[id], results));
+    callback();
   });
 });
+queue.concurrency = 10;
+queue.push.call(queue, Object.keys(ceos));
