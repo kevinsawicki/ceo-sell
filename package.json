@@ -1,0 +1,16 @@
+{
+  "name": "form-four",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.44.0",
+    "cheerio": "^0.17.0",
+    "xml-stream": "^0.4.4"
+  }
+}
