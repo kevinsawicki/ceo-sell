@@ -33,6 +33,15 @@ var getFilingXmlFileUrl = function(filingHref, callback) {
   });
 };
 
+var getFilingHtmlFileUrl = function(filingHref, callback) {
+  request(filingHref, function(error, response, body) {
+    var htmlName = cheerio(body).find('a[href^="/Archives"]').first().attr('href');
+    console.log(htmlName);
+    var htmlUrl = url.resolve("http://www.sec.gov/", htmlName);
+    callback(null, htmlUrl);
+  });
+}
+
 var parseFilingXml = function(xmlFileUrl, callback) {
   var parser = new XmlStream(request(xmlFileUrl), 'utf8');
 
@@ -81,8 +90,10 @@ var parseFilingXml = function(xmlFileUrl, callback) {
 getLatestTransaction = function(id, callback) {
   getLatestFiling(id, function(error, filingHref) {
     getFilingXmlFileUrl(filingHref, function(error, xmlFileUrl) {
-      parseFilingXml(xmlFileUrl, function (error, shares, cost) {
-        callback(null, filingHref, shares, cost);
+      getFilingHtmlFileUrl(filingHref, function(error, htmlFileUrl) {
+        parseFilingXml(xmlFileUrl, function (error, shares, cost) {
+          callback(null, htmlFileUrl, shares, cost);
+        });
       });
     });
   });
