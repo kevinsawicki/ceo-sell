@@ -55,6 +55,8 @@ var getLatestFiling = function(id, callback) {
   parser.on('end', function() {
     callback(new Error("No filing URL and date found in feed: " + id))
   });
+
+  parser.on('error', callback);
 };
 
 var getFilingXmlFileUrl = function(filingHref, callback) {
