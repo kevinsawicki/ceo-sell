@@ -63,7 +63,7 @@ var parseFilingXml = function(xmlFileUrl, callback) {
   });
 
   parser.on('endElement: transactionAmounts', function(name) {
-    if (currentType == 'D') {
+    if (currentType === 'D') {
       if (currentPrice > 0 && isFinite(currentPrice)) {
         if (currentShares > 0 && isFinite(currentShares)) {
           totalShares += currentShares;
