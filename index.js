@@ -18,10 +18,16 @@ var getLatestFiling = function(id, callback) {
     }
   };
 
+  var filingUrl;
+
   var parser = new XmlStream(request(requestOptions), 'utf8');
-  parser.once('text: filing-href', function (node) {
-    var text = node.$text.trim();
-    callback(null, text);
+  parser.once('text: entry > content > filing-href', function (node) {
+    filingUrl = node.$text.trim();
+  });
+
+  parser.once('text: entry > updated', function (node) {
+    var filingDate = Date.parse(node.$text);
+    callback(null, filingUrl, filingDate);
   });
 };
 
@@ -87,24 +93,24 @@ var parseFilingXml = function(xmlFileUrl, callback) {
 };
 
 var getLatestTransaction = function(id, callback) {
-  getLatestFiling(id, function(error, filingHref) {
+  getLatestFiling(id, function(error, filingHref, filingDate) {
     getFilingXmlFileUrl(filingHref, function(error, xmlFileUrl) {
       getFilingHtmlFileUrl(filingHref, function(error, htmlFileUrl) {
         parseFilingXml(xmlFileUrl, function (error, shares, dollarAmount) {
-          callback(null, htmlFileUrl, shares, dollarAmount);
+          callback(null, htmlFileUrl, shares, dollarAmount, filingDate);
         });
       });
     });
   });
 };
 
-var generateTweet = function(ceo, filingUrl, shares, dollarAmount) {
-  return ceo.name + " sold " + Humanize.compactInteger(shares, 0) + " shares for $" + Humanize.compactInteger(dollarAmount, 1) + " " + filingUrl;
+var generateTweet = function(ceo, filingUrl, shares, dollarAmount, filingDate) {
+  return ceo.name + " sold " + Humanize.compactInteger(shares, 0) + " shares for $" + Humanize.compactInteger(dollarAmount, 1) + " on " + new Date(filingDate).toString() + " " + filingUrl;
 }
 
 Object.keys(ceos).forEach(function(id) {
-  getLatestTransaction(id, function(error, filingUrl, shares, dollarAmount) {
+  getLatestTransaction(id, function(error, filingUrl, shares, dollarAmount, filingDate) {
     if (shares > 0 && dollarAmount > 0)
-      console.log(generateTweet(ceos[id], filingUrl, shares, dollarAmount));
+      console.log(generateTweet(ceos[id], filingUrl, shares, dollarAmount, filingDate));
   });
 });
