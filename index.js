@@ -34,16 +34,22 @@ var getLatestFiling = function(id, callback) {
     callback(new Error("Failed to get latest filing for: " + id + ". " + error.message));
   });
 
-  var filingUrl;
+  var filingUrl = '';
+  var filingDate = '';
 
   var parser = new XmlStream(filingRequest, 'utf8');
-  parser.once('text: entry > content > filing-href', function (node) {
-    filingUrl = node.$text.trim();
+  parser.on('text: entry > content > filing-href', function (node) {
+    filingUrl += node.$text;
   });
 
-  parser.once('text: entry > updated', function (node) {
-    var filingDate = Date.parse(node.$text);
-    callback(null, filingUrl, filingDate);
+  parser.on('text: entry > updated', function (node) {
+    filingDate += node.$text;
+  });
+
+  parser.once('endElement: entry', function() {
+    filingUrl = filingUrl.trim()
+    filingDate = Date.parse(filingDate.trim());
+    callback(null, filingUrl, filingDate)
   });
 
   parser.on('end', function() {
