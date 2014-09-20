@@ -1,11 +1,13 @@
 {
   "1214156": {
     "name": "Tim Cook",
+    "company": "Apple",
     "twitter": "tim_cook",
     "id": "1214156"
   },
   "1335782": {
     "name": "Doug McMillon",
+    "company": "Walmart",
     "id": "1335782"
   }
 }
