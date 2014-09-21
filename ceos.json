@@ -92,5 +92,66 @@
     "company": "McKesson",
     "symbol": "MCK",
     "id": "1197887"
+  },
+  "1385260": {
+    "name": "Lowell McAdam",
+    "company": "Verizon",
+    "symbol": "VZ",
+    "id": "1385260"
+  },
+  "1079816": {
+    "name": "Meg Whitman",
+    "company": "Hewless-Packard",
+    "symbol": "HPQ",
+    "id": "1079816"
+  },
+  "1195345": {
+    "name": "James Dimon",
+    "company": "J.P. Morgan Chase",
+    "symbol": "JPM",
+    "id": "1195345"
+  },
+  "1184494": {
+    "name": "Craig Jelinek",
+    "company": "Costco",
+    "symbol": "COST",
+    "id": "1184494"
+  },
+  "1235682": {
+    "name": "George Paz",
+    "company": "Express Scripts",
+    "symbol": "ESRX",
+    "id": "1235682"
+  },
+  "1195071": {
+    "name": "Brian Moynihan",
+    "company": "Bank of America",
+    "symbol": "BAC",
+    "id": "1195071"
+  },
+  "1425512": {
+    "name": "George Barrett",
+    "company": "Cardinal Health",
+    "symbol": "CAH",
+    "id": "1425512"
+  },
+  "1333712": {
+    "name": "Virgnia Rometty",
+    "company": "IBM",
+    "symbol": "IBM",
+    "id": "1333712"
+  },
+  "1188115": {
+    "name": "Rodney McMullen",
+    "company": "Kroger",
+    "symbol": "KR",
+    "id": "1188115"
+  },
+  "1331928": {
+    "name": "Gary Heminger",
+    "company": "Marathon",
+    "symbol": "MPC",
+    "id": "1331928"
   }
+
 }
