@@ -121,7 +121,7 @@ var parseFilingXml = function(companySymbol, xmlFileUrl, callback) {
   });
 
   parser.on('endElement: issuerTradingSymbol', function(node) {
-    if (companySymbol !== symbol.trim()) callback()
+    if (companySymbol !== symbol.trim()) callback();
   });
 
   parser.on('endElement: transactionAmounts', function(name) {
