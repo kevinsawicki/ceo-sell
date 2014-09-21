@@ -190,19 +190,22 @@ var getFilling = function(filing, callback) {
 
 // Get the latest filing where stock was sold
 var getLatestFiling = function(id, filingCallback) {
+  filingCallback = wrapCallback(filingCallback);
+
   getLatestFilings(id, function(error, filings) {
     if (error) return filingCallback(error);
 
     var queue = async.queue(function(filing, queueCallback) {
       getFilling(filing, function(error) {
         if (filing.shares > 0) {
-          queue.kill();
           filingCallback(null, filing);
+          queue.kill();
         }
         queueCallback();
       });
     });
     queue.push.call(queue, filings);
+    queue.drain = filingCallback;
     queue.concurrency = 1;
   });
 
