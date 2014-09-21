@@ -93,34 +93,37 @@ var parseFilingXml = function(xmlFileUrl, callback) {
   var totalShares = 0;
   var amountInDollars = 0;
 
-  var currentShares;
-  var currentPrice;
-  var currentType;
+  var shares;
+  var price;
+  var type;
 
   parser.on('startElement: transactionAmounts', function(name) {
-    currentPrice = 0;
-    currentShares = 0;
-    currentType = null;
+    price =  '';
+    shares = '';
+    type = '';
   });
 
   parser.on('text: transactionAmounts > transactionShares > value', function(node) {
-    currentShares = parseFloat(node.$text);
+    shares += node.$text;
   });
 
   parser.on('text: transactionAmounts > transactionPricePerShare > value', function(node) {
-    currentPrice = parseFloat(node.$text);
+    price += node.$text;
   });
 
   parser.on('text: transactionAmounts > transactionAcquiredDisposedCode > value', function(node) {
-    currentType = node.$text.trim();
+    type += node.$text;
   });
 
   parser.on('endElement: transactionAmounts', function(name) {
-    if (currentType === 'D') {
-      if (currentPrice > 0 && isFinite(currentPrice)) {
-        if (currentShares > 0 && isFinite(currentShares)) {
-          totalShares += currentShares;
-          amountInDollars += currentPrice * currentShares;
+    shares = parseFloat(shares);
+    price = parseFloat(price)
+    type = type.trim();
+    if (type === 'D') {
+      if (price > 0 && isFinite(price)) {
+        if (shares > 0 && isFinite(shares)) {
+          totalShares += shares;
+          amountInDollars += price * shares;
         }
       }
     }
