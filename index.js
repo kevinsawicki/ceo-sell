@@ -86,7 +86,7 @@ var getFilingHtmlFileUrl = function(filingHref, callback) {
   });
 }
 
-var parseFilingXml = function(xmlFileUrl, callback) {
+var parseFilingXml = function(companySymbol, xmlFileUrl, callback) {
   callback = wrapCallback(callback);
   var parser = new XmlStream(request(xmlFileUrl), 'utf8');
 
@@ -96,6 +96,7 @@ var parseFilingXml = function(xmlFileUrl, callback) {
   var shares;
   var price;
   var type;
+  var symbol = '';
 
   parser.on('startElement: transactionAmounts', function(name) {
     price =  '';
@@ -113,6 +114,14 @@ var parseFilingXml = function(xmlFileUrl, callback) {
 
   parser.on('text: transactionAmounts > transactionAcquiredDisposedCode > value', function(node) {
     type += node.$text;
+  });
+
+  parser.on('text: issuer > issuerTradingSymbol', function(node) {
+    symbol += node.$text;
+  });
+
+  parser.on('endElement: issuerTradingSymbol', function(node) {
+    if (companySymbol !== symbol.trim()) callback()
   });
 
   parser.on('endElement: transactionAmounts', function(name) {
@@ -163,7 +172,7 @@ var getLatestTransaction = function(id, callback) {
   });
 
   tasks.push(function(callback) {
-    parseFilingXml(results.xmlUrl, function (error, shares, dollars) {
+    parseFilingXml(ceos[id].symbol, results.xmlUrl, function (error, shares, dollars) {
       results.shares = shares;
       results.dollars = dollars;
       callback(error);
