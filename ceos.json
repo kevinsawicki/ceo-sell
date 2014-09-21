@@ -25,5 +25,32 @@
     "company": "Apple",
     "twitter": "tim_cook",
     "id": "1214156"
+  },
+  "1503107": {
+    "name": "Greg Garland",
+    "company": "Phillips 66",
+    "id": "1503107"
+  },
+  "1492154": {
+    "name": "Mary Barra",
+    "company": "GM",
+    "twitter": "mtbarra",
+    "id": "1492154"
+  },
+  "1191534": {
+    "name": "Mark Fields",
+    "company": "Ford",
+    "id": "1191534"
+  },
+  "1233164": {
+    "name": "Jeff Immelt",
+    "company": "GE",
+    "twitter": "JeffImmelt",
+    "id": "1233164"
+  },
+  "1350220": {
+    "name": "Joe Gorder",
+    "company": "Valero",
+    "id": "1350220"
   }
 }
