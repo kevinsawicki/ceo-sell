@@ -6,6 +6,7 @@ var request   = require('request');
 var url       = require('url');
 var XmlStream = require('xml-stream');
 
+// Wrap a callback to ensure it is only called once.
 var wrapCallback = function(callback) {
   var callbackCalled = false;
   return function() {
@@ -15,6 +16,7 @@ var wrapCallback = function(callback) {
   };
 }
 
+// Get the last 10 Form Four filings for the given id
 var getLatestFilings = function(id, callback) {
   callback = wrapCallback(callback);
 
@@ -67,6 +69,7 @@ var getLatestFilings = function(id, callback) {
   parser.on('error', callback);
 };
 
+// Get the XML file URL of the given filing
 var getFilingXmlFileUrl = function(filingHref, callback) {
   callback = wrapCallback(callback);
 
@@ -82,6 +85,7 @@ var getFilingXmlFileUrl = function(filingHref, callback) {
   });
 };
 
+// Get the HTML file URL of the given filing
 var getFilingHtmlFileUrl = function(filingHref, callback) {
   request(filingHref, function(error, response, body) {
     if (error) return callback(error);
@@ -94,7 +98,9 @@ var getFilingHtmlFileUrl = function(filingHref, callback) {
   });
 }
 
-var parseFilingXml = function(companySymbol, xmlFileUrl, callback) {
+// Get the number of shares sold and the amount they were sold for in USD
+// for the given filing.
+var getSharesAndPrice = function(companySymbol, xmlFileUrl, callback) {
   callback = wrapCallback(callback);
   var parser = new XmlStream(request(xmlFileUrl), 'utf8');
 
@@ -153,6 +159,7 @@ var parseFilingXml = function(companySymbol, xmlFileUrl, callback) {
   parser.on('error', callback);
 };
 
+// Load the XML URL, HTML URL, share, and dollar information for the filing
 var getFilling = function(filing, callback) {
   var tasks = [];
 
@@ -171,7 +178,7 @@ var getFilling = function(filing, callback) {
   });
 
   tasks.push(function(callback) {
-    parseFilingXml(ceos[filing.id].symbol, filing.xmlUrl, function (error, shares, dollars) {
+    getSharesAndPrice(ceos[filing.id].symbol, filing.xmlUrl, function (error, shares, dollars) {
       filing.shares = shares;
       filing.dollars = dollars;
       callback(error);
@@ -181,6 +188,7 @@ var getFilling = function(filing, callback) {
   async.waterfall(tasks, callback);
 };
 
+// Get the latest filing where stock was sold
 var getLatestFiling = function(id, filingCallback) {
   getLatestFilings(id, function(error, filings) {
     if (error) return filingCallback(error);
@@ -200,11 +208,12 @@ var getLatestFiling = function(id, filingCallback) {
 
 };
 
-var generateTweet = function(ceo, results) {
-  return ceo.name + " sold " + Humanize.compactInteger(results.shares, 0)
-    + " shares for $" + Humanize.compactInteger(results.dollars, 1)
-    + " on " + new Date(results.date).toString()
-    + " " + results.htmlUrl;
+// Generate a tweet from the given filing
+var generateTweet = function(ceo, filing) {
+  return ceo.name + " sold " + Humanize.compactInteger(filing.shares, 0)
+    + " shares for $" + Humanize.compactInteger(filing.dollars, 1)
+    + " on " + new Date(filing.date).toString()
+    + " " + filing.htmlUrl;
 }
 
 var queue = async.queue(function(id, callback) {
