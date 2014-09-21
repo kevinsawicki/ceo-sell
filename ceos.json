@@ -62,5 +62,35 @@
     "company": "Valero",
     "symbol": "VLO",
     "id": "1350220"
+  },
+  "1183428": {
+    "name": "Randall Stephenson",
+    "company": "AT&T",
+    "symbol": "T",
+    "id": "1183428"
+  },
+  "1194413": {
+    "name": "Larry Merlo",
+    "company": "CVS",
+    "symbol": "CVS",
+    "id": "1194413"
+  },
+  "1462553": {
+    "name": "Timothy Mayopoulos",
+    "company": "Fannie Mae",
+    "symbol": "FNMA",
+    "id": "1462553"
+  },
+  "1180162": {
+    "name": "Stephen Hemsley",
+    "company": "UnitedHealth Group",
+    "symbol": "UNH",
+    "id": "1180162"
+  },
+  "1197887": {
+    "name": "John Hammergren",
+    "company": "McKesson",
+    "symbol": "MCK",
+    "id": "1197887"
   }
 }
