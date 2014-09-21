@@ -15,7 +15,7 @@ var wrapCallback = function(callback) {
   };
 }
 
-var getLatestFiling = function(id, callback) {
+var getLatestFilings = function(id, callback) {
   callback = wrapCallback(callback);
 
   var requestOptions = {
@@ -23,7 +23,7 @@ var getLatestFiling = function(id, callback) {
     qs: {
       action: 'getcompany',
       CIK: id,
-      count: 1,
+      count: 10,
       output: 'atom',
       owner: 'include',
       type: 4
@@ -34,10 +34,17 @@ var getLatestFiling = function(id, callback) {
     callback(new Error("Failed to get latest filing for: " + id + ". " + error.message));
   });
 
-  var filingUrl = '';
-  var filingDate = '';
+  var filings = [];
+  var filingUrl;
+  var filingDate;
 
   var parser = new XmlStream(filingRequest, 'utf8');
+
+  parser.on('startElement: entry', function() {
+    filingUrl = '';
+    filingDate = '';
+  });
+
   parser.on('text: entry > content > filing-href', function (node) {
     filingUrl += node.$text;
   });
@@ -46,14 +53,15 @@ var getLatestFiling = function(id, callback) {
     filingDate += node.$text;
   });
 
-  parser.once('endElement: entry', function() {
-    filingUrl = filingUrl.trim()
+  parser.on('endElement: entry', function() {
+    filingUrl = filingUrl.trim();
     filingDate = Date.parse(filingDate.trim());
-    callback(null, filingUrl, filingDate)
+    if (filingUrl && isFinite(filingDate))
+      filings.push({date: filingDate, rootUrl: filingUrl, id: id});
   });
 
   parser.on('end', function() {
-    callback(new Error("No filing URL and date found in feed: " + id))
+    callback(null, filings);
   });
 
   parser.on('error', callback);
@@ -145,43 +153,51 @@ var parseFilingXml = function(companySymbol, xmlFileUrl, callback) {
   parser.on('error', callback);
 };
 
-var getLatestTransaction = function(id, callback) {
+var getFilling = function(filing, callback) {
   var tasks = [];
-  var results = {};
 
   tasks.push(function(callback) {
-    getLatestFiling(id, function(error, filingHref, filingDate) {
-      results.rootUrl = filingHref;
-      results.date = filingDate;
-      callback(error);
-    });
-  })
-
-  tasks.push(function(callback) {
-    getFilingXmlFileUrl(results.rootUrl, function(error, xmlFileUrl) {
-      results.xmlUrl = xmlFileUrl;
+    getFilingXmlFileUrl(filing.rootUrl, function(error, xmlFileUrl) {
+      filing.xmlUrl = xmlFileUrl;
       callback(error);
     });
   });
 
   tasks.push(function(callback) {
-    getFilingHtmlFileUrl(results.rootUrl, function(error, htmlFileUrl) {
-      results.htmlUrl = htmlFileUrl;
+    getFilingHtmlFileUrl(filing.rootUrl, function(error, htmlFileUrl) {
+      filing.htmlUrl = htmlFileUrl;
       callback(error);
     });
   });
 
   tasks.push(function(callback) {
-    parseFilingXml(ceos[id].symbol, results.xmlUrl, function (error, shares, dollars) {
-      results.shares = shares;
-      results.dollars = dollars;
+    parseFilingXml(ceos[filing.id].symbol, filing.xmlUrl, function (error, shares, dollars) {
+      filing.shares = shares;
+      filing.dollars = dollars;
       callback(error);
     });
   });
 
-  async.waterfall(tasks, function(error) {
-    callback(error, results);
+  async.waterfall(tasks, callback);
+};
+
+var getLatestFiling = function(id, filingCallback) {
+  getLatestFilings(id, function(error, filings) {
+    if (error) return filingCallback(error);
+
+    var queue = async.queue(function(filing, queueCallback) {
+      getFilling(filing, function(error) {
+        if (filing.shares > 0) {
+          queue.kill();
+          filingCallback(null, filing);
+        }
+        queueCallback();
+      });
+    });
+    queue.push.call(queue, filings);
+    queue.concurrency = 1;
   });
+
 };
 
 var generateTweet = function(ceo, results) {
@@ -192,7 +208,7 @@ var generateTweet = function(ceo, results) {
 }
 
 var queue = async.queue(function(id, callback) {
-  getLatestTransaction(id, function(error, results) {
+  getLatestFiling(id, function(error, results) {
     if (error)
       console.error(error.message || error);
     else if (results && results.shares > 0 && results.dollars > 0)
