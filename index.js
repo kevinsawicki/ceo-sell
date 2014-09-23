@@ -233,8 +233,8 @@ var generateMessage = function(filing) {
 }
 
 var progressOptions = {
-  total: Object.keys(ceos).length,
   clear: true,
+  total: Object.keys(ceos).length,
   width: 40
 };
 var progress = new Progress('downloading transactions [:bar] :percent :etas', progressOptions);
