@@ -61,7 +61,7 @@ var getLatestFilings = function(id, callback) {
   parser.on('endElement: entry', function() {
     filingUrl = filingUrl.trim();
     filingDate = Date.parse(filingDate.trim());
-    if (filingUrl && isFinite(filingDate))
+    if (filingUrl && isFinite(filingDate) && filingDate > oneWeekAgo)
       filings.push({date: filingDate, rootUrl: filingUrl, id: id});
   });
 
@@ -228,7 +228,7 @@ var queue = async.queue(function(id, callback) {
   getLatestFiling(id, function(error, filing) {
     if (error)
       console.error(error.message || error);
-    else if (filing && filing.shares > 0 && filing.dollars > 0 && filing.date > oneWeekAgo)
+    else if (filing && filing.shares > 0 && filing.dollars > 0)
       console.log(generateMessage(ceos[id], filing));
     callback();
   });
