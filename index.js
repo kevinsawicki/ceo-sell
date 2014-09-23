@@ -29,7 +29,7 @@ var getLatestFilings = function(id, callback) {
     qs: {
       action: 'getcompany',
       CIK: id,
-      count: 10,
+      count: 50,
       output: 'atom',
       owner: 'include',
       type: 4
