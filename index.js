@@ -211,8 +211,8 @@ var getLatestFiling = function(id, filingCallback) {
 
 };
 
-// Generate a tweet from the given filing
-var generateTweet = function(ceo, filing) {
+// Generate a messages from the given filing
+var generateMessage = function(ceo, filing) {
   return ceo.name + " sold " + Humanize.compactInteger(filing.shares, 0)
     + " shares for $" + Humanize.compactInteger(filing.dollars, 1)
     + " on " + new Date(filing.date).toString()
@@ -224,7 +224,7 @@ var queue = async.queue(function(id, callback) {
     if (error)
       console.error(error.message || error);
     else if (results && results.shares > 0 && results.dollars > 0)
-      console.log(generateTweet(ceos[id], results));
+      console.log(generateMessage(ceos[id], results));
     callback();
   });
 });
