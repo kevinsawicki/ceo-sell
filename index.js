@@ -217,7 +217,7 @@ var getRecentSales = function(id, filingCallback) {
     queue.drain = function() {
       filingCallback(null, sales);
     };
-    queue.concurrency = 1;
+    queue.concurrency = 10;
   });
 
 };
