@@ -1,4 +1,13 @@
 # CEO Sell
 
-Prints out details about the last sale a CEO made of stock in their own
-company.
+Prints out all transactions from the last two weeks where a CEO sold stock in
+their own company.
+
+## Setting up
+
+```sh
+git clone https://github.com/kevinsawicki/ceo-sell
+cd ceo-sell
+npm install
+node index.js
+```
