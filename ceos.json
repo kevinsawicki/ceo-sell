@@ -152,6 +152,95 @@
     "company": "Marathon",
     "symbol": "MPC",
     "id": "1331928"
+  },
+  "1462790": {
+    "name": "Michael Corbat",
+    "company": "Citigroup",
+    "symbol": "C",
+    "id": "1462790"
+  },
+  "1194945": {
+    "name": "Patricia Woertz",
+    "company": "Archer Daniels Midland",
+    "symbol": "ADM",
+    "id": "1194945"
+  },
+  "1191508": {
+    "name": "Steveen Collis",
+    "company": "AmerisourceBergen",
+    "symbol": "ABC",
+    "id": "1191508"
+  },
+  "1201258": {
+    "name": "John Stumpf",
+    "company": "Wells Fargo",
+    "symbol": "WFC",
+    "id": "1201258"
+  },
+  "1182055": {
+    "name": "James McNerney",
+    "company": "Boeing",
+    "symbol": "BA",
+    "id": "1182055"
+  },
+  "1180784": {
+    "name": "Alan Lafley",
+    "company": "Procter & Gamble",
+    "symbol": "PG",
+    "id": "1180784"
+  },
+  "1179581": {
+    "name": "Donald Layton",
+    "company": "Freddie Mac",
+    "symbol": "FMCC",
+    "id": "1179581"
+  },
+  "1194702": {
+    "name": "Francis Blake",
+    "company": "Home Depot",
+    "symbol": "HD",
+    "id": "1194702"
+  },
+  "1513142": {
+    "name": "Satya Nadella",
+    "company": "Microsoft",
+    "symbol": "MSFT",
+    "id": "1513142"
+  },
+  "1043298": {
+    "name": "Jeff Bezos",
+    "company": "Amazon",
+    "symbol": "AMZN",
+    "id": "1043298"
+  },
+  "1288709": {
+    "name": "Brian Cornell",
+    "company": "Target",
+    "symbol": "TGT",
+    "id": "1288709"
+  },
+  "1188827": {
+    "name": "Gregory Wasson",
+    "company": "Walgreens",
+    "symbol": "WAG",
+    "id": "1188827"
+  },
+  "1179745": {
+    "name": "Joseph Swedish",
+    "company": "WellPoint",
+    "symbol": "WLP",
+    "id": "1179745"
+  },
+  "1453149": {
+    "name": "Alex Gorsky",
+    "company": "Johnson & Johnson",
+    "symbol": "JNJ",
+    "id": "1453149"
+  },
+  "1214148": {
+    "name": "Robert Benmosche",
+    "company": "AIG",
+    "symbol": "AIG",
+    "id": "1214148"
   }
-
 }
