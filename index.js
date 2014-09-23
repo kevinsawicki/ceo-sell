@@ -194,21 +194,22 @@ var getFilling = function(filing, callback) {
 // Get the recent sales of stock
 var getRecentSales = function(id, filingCallback) {
   filingCallback = wrapCallback(filingCallback);
+  var sales = [];
 
   getLatestFilings(id, function(error, filings) {
     if (error) return filingCallback(error);
 
     var queue = async.queue(function(filing, queueCallback) {
       getFilling(filing, function(error) {
-        if (filing.shares > 0) {
-          filingCallback(null, filing);
-          queue.kill();
-        }
+        if (filing.shares > 0 && filing.dollars > 0)
+          sales.push(filing);
         queueCallback();
       });
     });
     queue.push.call(queue, filings);
-    queue.drain = filingCallback;
+    queue.drain = function() {
+      filingCallback(null, sales);
+    };
     queue.concurrency = 1;
   });
 
@@ -225,11 +226,17 @@ var generateMessage = function(ceo, filing) {
 console.log("CEOs that sold stock in the last week".underline.yellow);
 
 var queue = async.queue(function(id, callback) {
-  getRecentSales(id, function(error, filing) {
-    if (error)
+  getRecentSales(id, function(error, sales) {
+    if (error) {
       console.error(error.message || error);
-    else if (filing && filing.shares > 0 && filing.dollars > 0)
+      callback();
+      return;
+    }
+
+    sales.forEach(function(filing) {
       console.log(generateMessage(ceos[id], filing));
+    });
+
     callback();
   });
 });
