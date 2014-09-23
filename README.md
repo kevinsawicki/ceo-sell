@@ -1,7 +1,7 @@
 # CEO Sell
 
-Prints out all transactions from the last two weeks where a CEO sold stock in
-their own company.
+Prints out all transactions from the last week where a Fortune 100 CEO sold
+stock in their own company.
 
 ## Setting up
 
