@@ -4,6 +4,7 @@ var colors    = require('colors');
 var ceos      = require('./ceos.json');
 var Humanize  = require('humanize-plus');
 var request   = require('request');
+var timeago   = require('timeago');
 var url       = require('url');
 var XmlStream = require('xml-stream');
 
@@ -219,7 +220,7 @@ var getRecentSales = function(id, filingCallback) {
 var generateMessage = function(ceo, filing) {
   return ceo.name + " sold " + Humanize.compactInteger(filing.shares, 0).green
     + " shares for " + ("$" + Humanize.compactInteger(filing.dollars, 1)).green
-    + " on " + new Date(filing.date).toString()
+    + " " + timeago(new Date(filing.date))
     + " " + filing.htmlUrl;
 }
 
