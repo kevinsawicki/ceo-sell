@@ -202,6 +202,12 @@ var getRecentSales = function(id, filingCallback) {
 
     var queue = async.queue(function(filing, queueCallback) {
       getFilling(filing, function(error) {
+        if (error) {
+          filingCallback(error);
+          queue.kill();
+          queueCallback();
+        }
+
         if (filing.shares > 0 && filing.dollars > 0)
           sales.push(filing);
         queueCallback();
