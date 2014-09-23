@@ -4,6 +4,7 @@ var colors    = require('colors');
 var ceos      = require('./ceos.json');
 var Humanize  = require('humanize-plus');
 var request   = require('request');
+var Progress  = require('progress');
 var timeago   = require('timeago');
 var url       = require('url');
 var XmlStream = require('xml-stream');
@@ -223,29 +224,44 @@ var getRecentSales = function(id, filingCallback) {
 };
 
 // Generate a messages from the given filing
-var generateMessage = function(ceo, filing) {
+var generateMessage = function(filing) {
+  var ceo = ceos[filing.id];
   return ceo.company + " CEO " + ceo.name + " sold " + Humanize.compactInteger(filing.shares, 0).green
     + " " + ceo.symbol + " shares for " + ("$" + Humanize.compactInteger(filing.dollars, 1)).green
     + " " + timeago(new Date(filing.date))
     + " " + filing.htmlUrl;
 }
 
-console.log("CEOs that sold stock in the last week".underline.yellow);
+var progressOptions = {
+  total: Object.keys(ceos).length,
+  clear: true,
+  width: 40
+};
+var progress = new Progress('downloading transactions [:bar] :percent :etas', progressOptions);
+
+var allSales = [];
 
 var queue = async.queue(function(id, callback) {
   getRecentSales(id, function(error, sales) {
+    progress.tick();
     if (error) {
       console.error(error.message || error);
       callback();
       return;
     }
 
-    sales.forEach(function(filing) {
-      console.log(generateMessage(ceos[id], filing));
-    });
-
+    allSales = allSales.concat(sales);
     callback();
   });
 });
 queue.concurrency = 10;
 queue.push.call(queue, Object.keys(ceos));
+queue.drain = function() {
+  console.log("CEOs that sold stock in the last week".underline.yellow);
+  allSales.sort(function(filing1, filing2) {
+    return filing1.date - filing2.date;
+  });
+  allSales.forEach(function(filing) {
+    console.log(generateMessage(filing));
+  });
+};
