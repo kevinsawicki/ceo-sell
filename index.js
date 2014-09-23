@@ -1,10 +1,13 @@
 var async     = require('async');
 var cheerio   = require('cheerio');
+var colors    = require('colors');
 var ceos      = require('./ceos.json');
 var Humanize  = require('humanize-plus');
 var request   = require('request');
 var url       = require('url');
 var XmlStream = require('xml-stream');
+
+var oneWeekAgo = Date.now() - (7 * 24 * 60 * 60 * 1000)
 
 // Wrap a callback to ensure it is only called once.
 var wrapCallback = function(callback) {
@@ -213,18 +216,20 @@ var getLatestFiling = function(id, filingCallback) {
 
 // Generate a messages from the given filing
 var generateMessage = function(ceo, filing) {
-  return ceo.name + " sold " + Humanize.compactInteger(filing.shares, 0)
-    + " shares for $" + Humanize.compactInteger(filing.dollars, 1)
+  return ceo.name + " sold " + Humanize.compactInteger(filing.shares, 0).green
+    + " shares for " + ("$" + Humanize.compactInteger(filing.dollars, 1)).green
     + " on " + new Date(filing.date).toString()
     + " " + filing.htmlUrl;
 }
 
+console.log("CEOs that sold stock in the last week".underline.yellow);
+
 var queue = async.queue(function(id, callback) {
-  getLatestFiling(id, function(error, results) {
+  getLatestFiling(id, function(error, filing) {
     if (error)
       console.error(error.message || error);
-    else if (results && results.shares > 0 && results.dollars > 0)
-      console.log(generateMessage(ceos[id], results));
+    else if (filing && filing.shares > 0 && filing.dollars > 0 && filing.date > oneWeekAgo)
+      console.log(generateMessage(ceos[id], filing));
     callback();
   });
 });
