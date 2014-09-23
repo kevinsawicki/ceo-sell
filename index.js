@@ -191,8 +191,8 @@ var getFilling = function(filing, callback) {
   async.waterfall(tasks, callback);
 };
 
-// Get the latest filing where stock was sold
-var getLatestFiling = function(id, filingCallback) {
+// Get the recent sales of stock
+var getRecentSales = function(id, filingCallback) {
   filingCallback = wrapCallback(filingCallback);
 
   getLatestFilings(id, function(error, filings) {
@@ -225,7 +225,7 @@ var generateMessage = function(ceo, filing) {
 console.log("CEOs that sold stock in the last week".underline.yellow);
 
 var queue = async.queue(function(id, callback) {
-  getLatestFiling(id, function(error, filing) {
+  getRecentSales(id, function(error, filing) {
     if (error)
       console.error(error.message || error);
     else if (filing && filing.shares > 0 && filing.dollars > 0)
