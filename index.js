@@ -21,7 +21,7 @@ var wrapCallback = function(callback) {
   };
 }
 
-// Get the last 10 Form Four filings for the given id
+// Get the last 50 Form Four filings for the given id
 var getLatestFilings = function(id, callback) {
   callback = wrapCallback(callback);
 
