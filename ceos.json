@@ -560,5 +560,281 @@
     "company": "Philip Morris",
     "symbol": "PM",
     "id": "1189713"
+  },
+  "1263739": {
+    "name": "Inge Thulin",
+    "company": "3M",
+    "symbol": "MMM",
+    "id": "1263739"
+  },
+  "1237443": {
+    "name": "Jeffrey Bewkes",
+    "company": "Time Warner",
+    "symbol": "TWX",
+    "id": "1237443"
+  },
+  "1198405": {
+    "name": "David Lesar",
+    "company": "Halliburton",
+    "symbol": "HAL",
+    "id": "1198405"
+  },
+  "1189930": {
+    "name": "John Faraci",
+    "company": "International Paper",
+    "symbol": "IP",
+    "id": "1189930"
+  },
+  "1374074": {
+    "name": "Donald Thompson",
+    "company": "McDonald's",
+    "symbol": "MCD",
+    "id": "1374074"
+  },
+  "1184471": {
+    "name": "Terry Lundgren",
+    "company": "Macy's",
+    "symbol": "M",
+    "id": "1184471"
+  },
+  "1216135": {
+    "name": "Carol Meyrowitz",
+    "company": "TJX",
+    "symbol": "TJX",
+    "id": "1216135"
+  },
+  "1392152": {
+    "name": "David Seaton",
+    "company": "Fluor",
+    "symbol": "FLR",
+    "id": "1392152"
+  },
+  "1247747": {
+    "name": "Robert Dutkowsky",
+    "company": "Tech Data",
+    "symbol": "TECD",
+    "id": "1247747"
+  },
+  "1249552": {
+    "name": "Douglas Parker",
+    "company": "American Airlines",
+    "symbol": "AAL",
+    "id": "1249552"
+  },
+  "1283707": {
+    "name": "Liam McGee",
+    "company": "The Hartford",
+    "symbol": "HIG",
+    "id": "1283707"
+  },
+  "1201696": {
+    "name": "Jay Fishman",
+    "company": "Travelers",
+    "symbol": "TRV",
+    "id": "1201696"
+  },
+  "1236641": {
+    "name": "Mark Parker",
+    "company": "Nike",
+    "symbol": "NKE",
+    "id": "1236641"
+  },
+  "1026545": {
+    "name": "Stephen Chazen",
+    "company": "Occidental Petroleum",
+    "symbol": "OXY",
+    "id": "1026545"
+  },
+  "1220015": {
+    "name": "Richard Hamada",
+    "company": "Avnet",
+    "symbol": "AVT",
+    "id": "1220015"
+  },
+  "1233862": {
+    "name": "John Standley",
+    "company": "Rite Aid",
+    "symbol": "RAD",
+    "id": "1233862"
+  },
+  "1411453": {
+    "name": "Christopher Crane",
+    "company": "Exelon",
+    "symbol": "EXC",
+    "id": "1411453"
+  },
+  "1434806": {
+    "name": "Steven Mollenkopf",
+    "company": "Qualcomm",
+    "symbol": "QCOM",
+    "id": "1434806"
+  },
+  "1183474": {
+    "name": "David Farr",
+    "company": "Emerson Electric",
+    "symbol": "EMR",
+    "id": "1183474"
+  },
+  "1216503": {
+    "name": "Wesley Bush",
+    "company": "Northrop Grumman",
+    "symbol": "NOC",
+    "id": "1216503"
+  },
+  "1230175": {
+    "name": "Lynn Good",
+    "company": "Duke Energy",
+    "symbol": "DUK",
+    "id": "1230175"
+  },
+  "1238032": {
+    "name": "Richard Fairbank",
+    "company": "Capital One",
+    "symbol": "COF",
+    "id": "1238032"
+  },
+  "1075275": {
+    "name": "Daniel Amos",
+    "company": "Aflac",
+    "symbol": "AFL",
+    "id": "1075275"
+  },
+  "1495635": {
+    "name": "Thomas Kennedy",
+    "company": "Raytheon",
+    "symbol": "RTN",
+    "id": "1495635"
+  },
+  "1180656": {
+    "name": "Ronald Sargent",
+    "company": "Staples",
+    "symbol": "SPLS",
+    "id": "1180656"
+  },
+  "1189198": {
+    "name": "Joseph Tucci",
+    "company": "EMC",
+    "symbol": "EMC",
+    "id": "1189198"
+  },
+  "1209281": {
+    "name": "John Lechleiter",
+    "company": "Eli Lilly",
+    "symbol": "LLY",
+    "id": "1209281"
+  },
+  "1268014": {
+    "name": "Klaus Kleinfeld",
+    "company": "Alcoa",
+    "symbol": "AA",
+    "id": "1268014"
+  },
+  "1248338": {
+    "name": "Clay Williams",
+    "company": "Nation Oilwell Varco",
+    "symbol": "NOV",
+    "id": "1248338"
+  },
+  "1319699": {
+    "name": "Martin Craighead",
+    "company": "Baker Hughes",
+    "symbol": "BHI",
+    "id": "1319699"
+  },
+  "1225752": {
+    "name": "Robert Marcus",
+    "company": "Time Warner Cable",
+    "symbol": "TWC",
+    "id": "1225752"
+  },
+  "1200010": {
+    "name": "John Koraleski",
+    "company": "Union Pacific",
+    "symbol": "UNP",
+    "id": "1200010"
+  },
+  "1239129": {
+    "name": "Miles White",
+    "company": "Abbot Laboratories",
+    "symbol": "ABT",
+    "id": "1239129"
+  },
+  "1190699": {
+    "name": "Ursula Burns",
+    "company": "Xerox",
+    "symbol": "XRX",
+    "id": "1190699"
+  },
+  "1186373": {
+    "name": "Michael Long",
+    "company": "Arrow Electronics",
+    "symbol": "ARW",
+    "id": "1186373"
+  },
+  "1222890": {
+    "name": "Thomas Falk",
+    "company": "Kimberly-Clark",
+    "symbol": "KMB",
+    "id": "1222890"
+  },
+  "1185480": {
+    "name": "Richard Davis",
+    "company": "U.S Bank",
+    "symbol": "USB",
+    "id": "1185480"
+  },
+  "1200685": {
+    "name": "Richard Adkerson",
+    "company": "Freeport-McMoRan Copper & Gold",
+    "symbol": "FCX",
+    "id": "1200685"
+  },
+  "1559415": {
+    "name": "Keith Cozza",
+    "company": "Icahn Enterprises",
+    "symbol": "IEP",
+    "id": "1559415"
+  },
+  "1348792": {
+    "name": "Jonas Prising",
+    "company": "ManpowerGroup",
+    "symbol": "MAN",
+    "id": "1348792"
+  },
+  "1319731": {
+    "name": "Michael Jennings",
+    "company": "HollyFrontier",
+    "symbol": "HFC",
+    "id": "1319731"
+  },
+  "1336787": {
+    "name": "Eric Slifka",
+    "company": "Global Partners",
+    "symbol": "GLP",
+    "id": "1336787"
+  },
+  "1201067": {
+    "name": "Richard Kramer",
+    "company": "Goodyear",
+    "symbol": "GT",
+    "id": "1201067"
+  },
+  "1563246": {
+    "name": "Thomas Nimbley",
+    "company": "PBF Energy",
+    "symbol": "PBF",
+    "id": "1563246"
+  },
+  "1205247": {
+    "name": "Lawrence Culp",
+    "company": "Danaher",
+    "symbol": "DHR",
+    "id": "1205247"
+  },
+  "1181020": {
+    "name": "John Ferriola",
+    "company": "Nucor",
+    "symbol": "NUE",
+    "id": "1181020"
   }
 }
