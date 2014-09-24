@@ -220,7 +220,6 @@ var getRecentSales = function(id, filingCallback) {
     };
     queue.concurrency = 10;
   });
-
 };
 
 // Generate a messages from the given filing
@@ -244,13 +243,10 @@ var allSales = [];
 var queue = async.queue(function(id, callback) {
   getRecentSales(id, function(error, sales) {
     progress.tick();
-    if (error) {
+    if (error)
       console.error(error.message || error);
-      callback();
-      return;
-    }
-
-    allSales = allSales.concat(sales);
+    else
+      allSales = allSales.concat(sales);
     callback();
   });
 });
