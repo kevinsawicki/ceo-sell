@@ -836,5 +836,299 @@
     "company": "Nucor",
     "symbol": "NUE",
     "id": "1181020"
+  },
+  "1238809": {
+    "name": "Kevin Mansell",
+    "company": "Kohl's",
+    "symbol": "KSS",
+    "id": "1238809"
+  },
+  "1239127": {
+    "name": "Richard Gonzalez",
+    "company": "AbbView",
+    "symbol": "ABBV",
+    "id": "1239127"
+  },
+  "1224295": {
+    "name": "Jeff Fettig",
+    "company": "Whirlpool",
+    "symbol": "WHR",
+    "id": "1224295"
+  },
+  "1396482": {
+    "name": "Robert Bradway",
+    "company": "Amgen",
+    "symbol": "AMGN",
+    "id": "1396482"
+  },
+  "1196746": {
+    "name": "Mark Mondello",
+    "company": "Jabil Circuit",
+    "symbol": "JBL",
+    "id": "1196746"
+  },
+  "1369091": {
+    "name": "Anthony Vernon",
+    "company": "Kraft Foods",
+    "symbol": "KRFT",
+    "id": "1369091"
+  },
+  "1198119": {
+    "name": "Glenn Renwick",
+    "company": "Progressive",
+    "symbol": "PGR",
+    "id": "1198119"
+  },
+  "1202860": {
+    "name": "Glen Post",
+    "company": "CenturyLink",
+    "symbol": "CTL",
+    "id": "1202860"
+  },
+  "1298823": {
+    "name": "Kendall Powell",
+    "company": "General Mills",
+    "symbol": "GIS",
+    "id": "1298823"
+  },
+  "1027716": {
+    "name": "Gary Kelly",
+    "company": "Southwest Airlines",
+    "symbol": "LUV",
+    "id": "1027716"
+  },
+  "1431013": {
+    "name": "Martin Barrington",
+    "company": "Altria",
+    "symbol": "MO",
+    "id": "1431013"
+  },
+  "1228778": {
+    "name": "Michael Jackson",
+    "company": "AutoNation",
+    "symbol": "AN",
+    "id": "1228778"
+  },
+  "1553194": {
+    "name": "Robert Lawler",
+    "company": "Chesapeake Energy",
+    "symbol": "CHK",
+    "id": "1553194"
+  },
+  "1209831": {
+    "name": "Richard Dreiling",
+    "company": "Dollar General",
+    "symbol": "DG",
+    "id": "1209831"
+  },
+  "1136562": {
+    "name": "John Plant",
+    "company": "TRW Automotive Holdings",
+    "symbol": "TRW",
+    "id": "1136562"
+  },
+  "1308357": {
+    "name": "Mario Longhi",
+    "company": "U.S. Steel",
+    "symbol": "X",
+    "id": "1308357"
+  },
+  "1227246": {
+    "name": "Ian Cook",
+    "company": "Colgate-Palmolive",
+    "symbol": "CL",
+    "id": "1227246"
+  },
+  "1238892": {
+    "name": "Thomas Linebarger",
+    "company": "Cummins",
+    "symbol": "CMI",
+    "id": "1238892"
+  },
+  "1201986": {
+    "name": "Ronald Armstrong",
+    "company": "PACCAR",
+    "symbol": "PCAR",
+    "id": "1201986"
+  },
+  "1227464": {
+    "name": "Thomas Fanning",
+    "company": "Southern Company",
+    "symbol": "SO",
+    "id": "1227464"
+  },
+  "1307581": {
+    "name": "Scott Santi",
+    "company": "Illinois Tool Works",
+    "symbol": "ITW",
+    "id": "1307581"
+  },
+  "1198053": {
+    "name": "William Demchak",
+    "company": "PNC",
+    "symbol": "PNC",
+    "id": "1198053"
+  },
+  "1523102": {
+    "name": "Omar Ishrak",
+    "company": "Medtronic",
+    "symbol": "MDT",
+    "id": "1523102"
+  },
+  "1348876": {
+    "name": "Andres Gluski",
+    "company": "AES",
+    "symbol": "AES",
+    "id": "1348876"
+  },
+  "1582735": {
+    "name": "Andrew Clyde",
+    "company": "Murphy USA",
+    "symbol": "MUSA",
+    "id": "1582735"
+  },
+  "1208099": {
+    "name": "Lamberto Andreotti",
+    "company": "Bristol-Myers Squibb",
+    "symbol": "BMY",
+    "id": "1208099"
+  },
+  "1354501": {
+    "name": "Matthew Simoncini",
+    "company": "Lear",
+    "symbol": "LEA",
+    "id": "1354501"
+  },
+  "1408088": {
+    "name": "Glenn Murphy",
+    "company": "Gap",
+    "symbol": "GPS",
+    "id": "1408088"
+  },
+  "1240568": {
+    "name": "Steven Farris",
+    "company": "Apache",
+    "symbol": "APA",
+    "id": "1240568"
+  },
+  "1321240": {
+    "name": "John Donahoe",
+    "company": "eBay",
+    "symbol": "EBAY",
+    "id": "1321240"
+  },
+  "1209482": {
+    "name": "Gerald Hassell",
+    "company": "Bank of New York",
+    "symbol": "BK",
+    "id": "1209482"
+  },
+  "1200609": {
+    "name": "Leslie Moonves",
+    "company": "CBS",
+    "symbol": "CBS",
+    "id": "1200609"
+  },
+  "1167316": {
+    "name": "Anthony Earley",
+    "company": "PG&E",
+    "symbol": "PCG",
+    "id": "1167316"
+  },
+  "1199045": {
+    "name": "Gary Rodkin",
+    "company": "ConAgra",
+    "symbol": "CAG",
+    "id": "1199045"
+  },
+  "1341014": {
+    "name": "Michael Lawrie",
+    "company": "Computer Sciences",
+    "symbol": "CSC",
+    "id": "1341014"
+  },
+  "1373601": {
+    "name": "Nicholas Akins",
+    "company": "American Electric Power",
+    "symbol": "AEP",
+    "id": "1373601"
+  },
+  "1277246": {
+    "name": "Stephen Milligan",
+    "company": "Western Digital",
+    "symbol": "WDC",
+    "id": "1277246"
+  },
+  "1583225": {
+    "name": "Lee Tillman",
+    "company": "Marathon Oil",
+    "symbol": "MRO",
+    "id": "1583225"
+  },
+  "1168252": {
+    "name": "Robert Parkinson",
+    "company": "Baxter International",
+    "symbol": "BAX",
+    "id": "1168252"
+  },
+  "1242243": {
+    "name": "Charles Bunch",
+    "company": "PPG",
+    "symbol": "PPG",
+    "id": "1242243"
+  },
+  "1183254": {
+    "name": "James Robo",
+    "company": "NextEra Energy",
+    "symbol": "NEE",
+    "id": "1183254"
+  },
+  "1018660": {
+    "name": "Wayne Smith",
+    "company": "Community Health System",
+    "symbol": "CYH",
+    "id": "1018660"
+  },
+  "1010178": {
+    "name": "James Tisch",
+    "company": "Loews",
+    "symbol": "L",
+    "id": "1010178"
+  },
+  "942439": {
+    "name": "Roger Penske",
+    "company": "Penske Automotice Group",
+    "symbol": "PAG",
+    "id": "942439"
+  },
+  "1127129": {
+    "name": "Anthony Alexander",
+    "company": "FirstEnergy",
+    "symbol": "FE",
+    "id": "1127129"
+  },
+  "901737": {
+    "name": "Howard Schultz",
+    "company": "Starbucks",
+    "symbol": "SBUX",
+    "id": "901737"
+  },
+  "1083211": {
+    "name": "Hugh Grant",
+    "company": "Monsanto",
+    "symbol": "MON",
+    "id": "1083211"
+  },
+  "1185941": {
+    "name": "John Bryant",
+    "company": "Kellogg",
+    "symbol": "K",
+    "id": "1185941"
+  },
+  "1043333": {
+    "name": "Terry Spencer",
+    "company": "ONEOK",
+    "symbol": "OKE",
+    "id": "1043333"
   }
 }

@@ -1,6 +1,6 @@
 # CEO Sell
 
-Prints out all transactions from the last week where a Fortune 150 CEO sold
+Prints out all transactions from the last week where a Fortune 200 CEO sold
 stock in their own company.
 
 ## Setting up
