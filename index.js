@@ -226,7 +226,7 @@ var getRecentSales = function(id, filingCallback) {
 var generateMessage = function(filing) {
   var ceo = ceos[filing.id];
   return ceo.company + " CEO " + ceo.name + " sold " + Humanize.compactInteger(filing.shares, 0).green
-    + " " + ceo.symbol + " shares for " + ("$" + Humanize.compactInteger(filing.dollars, 1)).green
+    + " $" + ceo.symbol + " shares for " + ("$" + Humanize.compactInteger(filing.dollars, 1)).green
     + " " + timeago(new Date(filing.date))
     + " " + filing.htmlUrl;
 }
