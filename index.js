@@ -206,7 +206,6 @@ var getRecentSales = function(id, filingCallback) {
         if (error) {
           filingCallback(error);
           queue.kill();
-          queueCallback();
         }
 
         if (filing.shares > 0 && filing.dollars > 0)
